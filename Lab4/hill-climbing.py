@@ -1,7 +1,6 @@
 import random
 
 def print_board(board):
-    """Display the board in a readable 4x4 format."""
     n = len(board)
     for i in range(n):
         row = ['Q' if board[i] == j else '.' for j in range(n)]
@@ -9,7 +8,6 @@ def print_board(board):
     print()
 
 def compute_conflicts(board):
-    """Return the total number of pairs of queens attacking each other."""
     n = len(board)
     conflicts = 0
     for i in range(n):
@@ -19,21 +17,17 @@ def compute_conflicts(board):
     return conflicts
 
 def get_best_neighbor(board):
-    """Return the best neighbor and its conflict count."""
     n = len(board)
     current_conflicts = compute_conflicts(board)
     best_board = board[:]
     best_conflicts = current_conflicts
 
-    # print(f"\nCurrent board: {board}, Cost = {current_conflicts}")
-    # print_board(board)
 
     for i in range(n):
         for j in range(i + 1, n):
             new_board = board[:]
             new_board[i], new_board[j] = new_board[j], new_board[i]
             new_conflicts = compute_conflicts(new_board)
-            # print(f"{new_board} -> Cost = {new_conflicts}")
             if new_conflicts < best_conflicts:
                 best_conflicts = new_conflicts
                 best_board = new_board[:]

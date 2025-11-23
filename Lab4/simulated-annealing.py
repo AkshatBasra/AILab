@@ -1,7 +1,6 @@
 import random, math
 
 def print_board(board):
-    """Display the board in a readable 4x4 format."""
     n = len(board)
     for i in range(n):
         row = ['Q' if board[i] == j else '.' for j in range(n)]

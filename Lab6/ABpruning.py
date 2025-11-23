@@ -73,7 +73,7 @@ def play_game():
     print("1 | 2 | 3\n4 | 5 | 6\n7 | 8 | 9")
 
     turn = input("\nDo you want to play first? (y/n): ").lower()
-    human_first = (turn == 'y')
+    human_first = (turn == 'n')
 
     while True:
         print_board(board)

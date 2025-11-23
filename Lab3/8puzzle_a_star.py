@@ -4,12 +4,10 @@ import time
 # Goal state
 GOAL = [[1, 2, 3],
         [4, 0, 5],
-        [6, 7, 8]]  # 0 = blank
+        [6, 7, 8]]
 
-# Directions (row, col)
 moves = [(-1,0), (1,0), (0,-1), (0,1)]
 
-# Heuristic: Manhattan Distance
 def manhattan(state):
     dist = 0
     for i in range(3):
@@ -20,14 +18,12 @@ def manhattan(state):
                 dist += abs(goal_x - i) + abs(goal_y - j)
     return dist
 
-# Find blank position
 def find_blank(state):
     for i in range(3):
         for j in range(3):
             if state[i][j] == 0:
                 return i, j
 
-# Generate next states
 def neighbors(state):
     x, y = find_blank(state)
     for dx, dy in moves:
@@ -37,11 +33,9 @@ def neighbors(state):
             new_state[x][y], new_state[nx][ny] = new_state[nx][ny], new_state[x][y]
             yield new_state
 
-# Convert list to tuple (for visited set)
 def state_to_tuple(state):
     return tuple(tuple(row) for row in state)
 
-# A* Search
 def astar(start):
     open = []
     heapq.heappush(open, (manhattan(start), 0, start, []))  # (f, g, state, path)
@@ -62,13 +56,11 @@ def astar(start):
 
     return None
 
-# Print board
 def print_board(board):
     for row in board:
         print(row)
     print()
 
-# Example usage
 start_state = [[3, 2, 8],
                [4, 0, 7],
                [1, 5, 6]]
